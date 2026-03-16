@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Builder</title>
+</head>
+
+<body>
+    <h1>House Builder</h1>
+
+     <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="../views/HouseList.html" class="active">House List</a></li>
+            <li><a href="../views/HouseBuilder.html">Build a House</a></li>
+            <li><a href="../views/showcase.html">Public Showcase</a></li>
+        </ul>
+    </nav>
+
+
+    <form id="houseForm">
+        <label for="name">House Name:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="storeyCount">Storey Count:</label>
+        <input type="number" id="storeyCount" min="1" required><br>
+
+        <label for="rooms">Rooms:</label>
+        <input type="number" id="rooms" min="1" required><br>
+
+        <label for="bathrooms">Bathrooms:</label>
+        <input type="number" id="bathrooms" min="0" required><br>
+
+        <label for="garages">Garages:</label>
+        <input type="number" id="garages" min="0" required><br>
+
+        <label for="floorAreaSqm">Floor Area (sqm):</label>
+        <input type="number" id="floorAreaSqm" min="1" required><br>
+
+        <label for="facade">Facade:</label>
+        <select id="facade">
+            <option value="Modern">Modern</option>
+            <option value="Classic">Classic</option>
+            <option value="Contemporary">Contemporary</option>
+        </select><br>
+
+        <label for="companyName">Company:</label>
+        <select id="companyName">
+            <option value="DreamBuild Homes">DreamBuild Homes</option>
+            <option value="Value Builders">Value Builders</option>
+            <option value="Premium Living Co.">Premium Living Co.</option>
+        </select><br>
+
+        <fieldset>
+            <legend>Extras:</legend>
+            <label><input type="checkbox" name="extras" value="Built-in Wardrobe"> Built-in Wardrobe</label><br>
+            <label><input type="checkbox" name="extras" value="Double Glazing Windows"> Double Glazing Windows</label><br>
+            <label><input type="checkbox" name="extras" value="Solar Panel Installation (Standard)"> Solar Panel Installation</label><br>
+        </fieldset>
+
+        <button type="submit">Save Build</button>
+    </form>
+
+    <script type="module">
+        import { HouseBuilderController } from "../controllers/HouseBuilderController.mjs";
+        HouseBuilderController.init(); // Initialises controller when page loads
+    </script>
+</body>
+</html>

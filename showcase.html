@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Showcase</title>
+</head>
+<body>
+    <h1>Public Showcase</h1>
+    <div id="showcaseContainer" class="showcase-list"></div>
+
+    <script type="module">
+        const container = document.getElementById("showcaseContainer");
+
+        async function loadShowcase() {
+            const res = await fetch("/api/showcase");
+            const posts = await res.json();
+            container.innerHTML = "";
+
+            posts.forEach(post => {
+                const card = document.createElement("div");
+                card.classList.add("showcase-card");
+
+                card.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>Company: ${post.companyName}</p>
+                    <p>Floor Area: ${post.floorAreaSqm} sqm</p>
+                    <p>Total Cost: $${post.totalCost.toLocaleString()}</p>
+                    <button class="delete-btn">Delete</button>
+                `;
+
+                card.querySelector(".delete-btn").addEventListener("click", async () => {
+                    await fetch(`/api/showcase/${post.id}`, { method: "DELETE" });
+                    loadShowcase();
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        loadShowcase();
+    </script>
+</body>
+</html>
